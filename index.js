@@ -1,7 +1,7 @@
 /**
  * @author Tiago Ribeiro - www.tiago-ribeiro.com
  * @description Helper class that handles all the input validation and shows possible informative errors to the end user
- * @see https://github.com/Ribeiro-Tiago/input-validator
+ * @see https://github.com/Ribeiro-Tiago/validate-input
  * @copyright MIT license, 2018
  * @version 1.0.0
  */
