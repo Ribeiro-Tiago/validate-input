@@ -1,0 +1,29 @@
+{
+  "name": "input-validator",
+  "version": "1.0.0",
+  "description": "Helper class that handles all the input validation and shows possible informative errors to the end user",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ribeiro-Tiago/input-validator.git"
+  },
+  "keywords": [
+    "validation",
+    "input",
+    "validation",
+    "input",
+    "error"
+  ],
+  "dependencies": {
+    "utilities-js": "^1.1.0"
+  },
+  "author": "Tiago Ribeiro - www.tiago-ribeiro.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ribeiro-Tiago/input-validator/issues"
+  },
+  "homepage": "https://github.com/Ribeiro-Tiago/input-validator#readme"
+}
