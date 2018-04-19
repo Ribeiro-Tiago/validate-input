@@ -8,6 +8,9 @@
 
  (function(){
     'use strict'
+
+    const util = require("utilities-js");
+
     /**
      * Validates the recieved obj according the validation rules recieved
      * @param {array|object} obj - array or single object with obj (either DOM object or value) to be validated, validation rules and custom error messages (if the user wants)

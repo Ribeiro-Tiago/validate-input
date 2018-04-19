@@ -3,7 +3,7 @@ Previously part of [utilities](https://www.github.com/ribeiro-tiago/utilities) n
 This class uses [utilities](https://www.github.com/ribeiro-tiago/utilities) for the validation rules.
 
 # Instalation
-You can either download and include the script to your file: `` <script src="path/to/script"></script> `` manually or you can use ecmascript 6's `` require("input-validator") ``
+You can either download (from index.js or /libs/) and include the script to your file: `` <script src="path/to/script"></script> `` manually or you can use ecmascript 6's `` require("input-validator") ``
 
 In this repo there's also some CSS for the error handling bit that you can use by downloading the CSS and including it on your code  ( `` <link rel="stylesheet" href="css/style.css">`` ). Alternatively you can also make your own error handling / css thingy.
 
