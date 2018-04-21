@@ -217,7 +217,7 @@
                 if (util.isArray(rule))
                 {
                     Array.prototype.forEach.call(rule, function(current, index){
-                        validate(input, current.rule, current.message, current.value, current.optional);
+                        validate(input, current.rule, current.message, current.ruleValue, current.optional);
                     });
                 }
                 else if (util.isObject(rule))
