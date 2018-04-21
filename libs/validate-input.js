@@ -200,6 +200,7 @@
          * @param {object} item - object with values (field, rule, etc)
          */
         const parseObj = function(item){
+            console.log(item);
             let rule = item.rule;
             let input = item.input;
             
