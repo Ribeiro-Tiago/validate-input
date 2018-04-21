@@ -3,7 +3,7 @@
  * @description Helper class that handles all the input validation and shows possible informative errors to the end user
  * @see https://github.com/Ribeiro-Tiago/user-input-validation
  * @copyright MIT license, 2018
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 (function(){
