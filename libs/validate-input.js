@@ -6,10 +6,12 @@
  * @version 1.0.0
  */
 
- (function(){
+(function(){
     'use strict'
 
-    const util = require("utilities-js");
+    if (!window.util){
+        throw new Error("You need utilities-js for this to work (fix coming soon). Head over to https://www.github.com/ribeiro-tiago/utilities/");
+    }
 
     /**
      * Validates the recieved obj according the validation rules recieved
@@ -54,7 +56,7 @@
 
             else if (rule === "number")
             {
-                if (!isNumber(util.inputValue))
+                if (!util.isNumber(util.inputValue))
                 {
                     errors.push({
                         error: message || "Numeric field!",
@@ -76,7 +78,7 @@
 
             else if (rule === "maxvalue")
             {
-                if (!isNumber(util.ruleValue))
+                if (!util.isNumber(util.ruleValue))
                     throw new Error ("Error validating maxvalue: value isn't number!");
 
                 if (parseInt(inputValue) > parseInt(ruleValue))
@@ -90,7 +92,7 @@
 
             else if (rule === "minvalue")
             {
-                if (!isNumber(util.ruleValue))
+                if (!util.isNumber(util.ruleValue))
                     throw new Error ("Error validating maxvalue: value isn't number!");
                 
                 if (parseInt(inputValue) < parseInt(ruleValue))
@@ -119,7 +121,7 @@
                     return (parseInt(inputValue) !== parseInt(value));
                 }
 
-                let different = (isObject(ruleValue)) ? ruleValue.every(incorrectValue) : incorrectValue(ruleValue);
+                let different = (util.isObject(ruleValue)) ? ruleValue.every(incorrectValue) : incorrectValue(ruleValue);
                 
                 if (different)
                 {
@@ -200,6 +202,10 @@
         const parseObj = function(item){
             let rule = item.rule;
             let input = item.input;
+            
+            if (!util.isDOM(input) && !util.isDOM(input[0])){
+                throw new Error("Invalid input. Supplied DOM / JQuery object is empty!");
+            }
 
             /**
              * Since the input can take up to 3 shapes, we must validate to see which one we're handling and 
@@ -208,13 +214,13 @@
              * @param {*} input - input we're preparing to validate 
              */
             const parseInput = function(input){
-                if (isArray(rule))
+                if (util.isArray(rule))
                 {
                     Array.prototype.forEach.call(rule, function(current, index){
                         validate(input, current.rule, current.message, current.value, current.optional);
                     });
                 }
-                else if (isObject(rule))
+                else if (util.isObject(rule))
                     validate(input, rule.rule, rule.message, rule.value, rule.optional);
                 else
                     validate(input, rule, item.message, item.value, item.optional);
@@ -223,7 +229,7 @@
             // since it's now possible validate more than one input with the same rules we need 
             // check if we're hanlding a single input or several. If it's several we go throught 
             // each one of them and call the respective function. If not we simply call the function
-            if (isArray(input))
+            if (util.isArray(input))
             {
                 Array.prototype.forEach.call(input, function(current){
                     parseInput(current);
@@ -233,12 +239,11 @@
                 parseInput(input);
         }
         
-        
         // since it's now possible to send both an array with all objects to be validated or just 
         // a single object to validate, we gotta check which one we're validating. If we're 
         // validating several inputs, we go throught each of them invidually and validate them
         // else we'll simply validate what we recieved
-        if (isArray(obj))
+        if (util.isArray(obj))
         {
             Array.prototype.forEach.call(obj, function(item){
                 parseObj(item);
@@ -299,7 +304,7 @@
                 return (util.isDOM(elem)) ? elem.parentElement : elem[0].parentElement;
             }
 
-            if (isArray(item.input))
+            if (util.isArray(item.input))
             {
                 Array.prototype.forEach.call(item.input, function(input){
                     addValidationErrors(getParent(input), item.error);
