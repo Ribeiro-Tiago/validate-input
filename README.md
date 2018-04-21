@@ -3,7 +3,7 @@ Previously part of [utilities](https://www.github.com/ribeiro-tiago/utilities) n
 This class uses [utilities](https://www.github.com/ribeiro-tiago/utilities) for the validation rules.
 
 # Instalation
-You can either download (from index.js or /libs/) and include the script to your file: `` <script src="path/to/script"></script> `` manually or you can use ecmascript 6's `` require("input-validator") ``
+Download (from index.js or /libs/) and include the script to your file: `` <script src="path/to/script"></script> ``. 
 
 In this repo there's also some CSS for the error handling bit that you can use by downloading the CSS and including it on your code  ( `` <link rel="stylesheet" href="css/style.css">`` ). Alternatively you can also make your own error handling / css thingy.
 
@@ -18,16 +18,15 @@ This function validates DOM fields or simple values. Some of the rules also requ
 This function accepts either and object or an array of objects. This object contains the field / value to be validated, the rule, a custom message (optional), ruleValue (depends on the which rule we're applying) and optional (which is in itself optional)
 
 Validation object composition: 
-```sh
+```javascript
 {
-  field: DOM element or value,
+  input: DOM element or JQuery object,
   rule: validation rule (string),
   message: a custom message you want for validation errors (string),
   ruleValue: some rules require a rulevalue (see below) 
   optional: for the times when a value is optional but must meet certain criteria (boolean)
 }
 ```
-
 
 Currently supports the following rules:
   - [required](#required)
@@ -52,51 +51,51 @@ There are several ways for you to validate what you need. You can:
 You can also have a specific custom message for each validation rule
 
 #### One field, one rule
-```sh
+```javascript
 validateInputs({
-  input: value,
+  input: dom,
   rule: "required"
 });
 ```
 
 #### One field, multiple rules
-```sh
+```javascript
 validateInputs({
-  input: value, 
+  input: dom, 
   rule: ["required", "number"]
 });
 ```
 
 #### Multiple fields, one rule each
-```sh
+```javascript
 validateInputs([
-  {input: value, rule: "required"},
-  {input: value2, rule: "email"},
-  {input: value3, rule: "even"}
+  {input: dom, rule: "required"},
+  {input: dom2, rule: "email"},
+  {input: dom3, rule: "even"}
 ]);
 ```
 
 #### Multiple fields, multiple rules
-```sh
+```javascript
 validateInputs([
-  {input: value, rule: ["required", "even"]},
-  {input: value2, rule: ["email", "positive"]}
+  {input: dom, rule: ["required", "even"]},
+  {input: dom2, rule: ["email", "positive"]}
 ]);
 ```
 
 #### Multiple fields, mixed rules
-```sh
+```javascript
 validateInputs([
-  {input: value, rule: "required"},
-  {input: value2, rule: ["email", "positive"]}
+  {input: dom, rule: "required"},
+  {input: dom2, rule: ["email", "positive"]}
 ]);
 ```
 
 #### Multiple rules with custom message each
-```sh
+```javascript
 validateInputs([
-  {input: value, rule: "required"},
-  {input: value2, rule: [
+  {input: dom, rule: "required"},
+  {input: dom2, rule: [
     {rule: "email", message: "Custom message"},
     {rule: "positive", message: "Custom message 2"} 
   ]}
@@ -104,12 +103,12 @@ validateInputs([
 ```
 
 #### Rules with rule value
-```sh
+```javascript
 validateInputs([
-  {input: value, rule: "maxvalue", ruleValue: 5},
-  {input: value2, rule: "required", message: "something"},
-  {input: value3, rule: "maxvalue", ruleValue: 5, message: "another something"},
-  {input: value4, rule: [
+  {input: dom, rule: "maxvalue", ruleValue: 5},
+  {input: dom2, rule: "required", message: "something"},
+  {input: dom3, rule: "maxvalue", ruleValue: 5, message: "another something"},
+  {input: dom4, rule: [
     {rule: "minlen", message: "Custom message", ruleValue: 5},
     {rule: "positive", message: "Custom message 2"},
     {rule: "required"}
@@ -119,74 +118,74 @@ validateInputs([
 
 ### required
 Checks if the value has something
-```sh
-validateInputs({input: value, rule: "required"});
+```javascript
+validateInputs({input: DOM, rule: "required"});
 ```
 
 ### number
 Checks if the value is a number
-```sh
-validateInputs({input: value, rule: "number"});
+```javascript
+validateInputs({input: DOM, rule: "number"});
 ```
 
 ### even
 Checks if the value is a number and if it's an even number
-```sh
-validateInputs({input: value, rule: "even"});
+```javascript
+validateInputs({input: DOM, rule: "even"});
 ```
 
 ### maxvalue
 Checks if the value is lower than the given rule value
-```sh
-validateInputs({input: value, rule: "maxvalue", ruleValue: 5});
+```javascript
+validateInputs({input: DOM, rule: "maxvalue", ruleValue: 5});
 ```
 
 ### minvalue
 Checks if the value is higher than the given rule value
-```sh
-validateInputs({input: value, rule: "minvalue", ruleValue: 5});
+```javascript
+validateInputs({input: DOM, rule: "minvalue", ruleValue: 5});
 ```
 
 ### positive
 Checks if the value is a number and if it's positive
-```sh
-validateInputs({input: value, rule: "maxvalue", ruleValue: 5});
+```javascript
+validateInputs({input: DOM, rule: "maxvalue", ruleValue: 5});
 ```
 
 ### equal 
 Checks if the value equals the value(s) from the rule value
-```sh
-validateInputs({input: value, rule: "equal", ruleValue: 5});
+```javascript
+validateInputs({input: DOM, rule: "equal", ruleValue: 5});
 ```
 or 
-```sh
-validateInputs({input: value, rule: "equal", ruleValue: [5, 2, 3]});
+```javascript
+validateInputs({input: DOM, rule: "equal", ruleValue: [5, 2, 3]});
 ```
 
 ### maxlen
 Checks if the value length is lower than the given rule value
-```sh
-validateInputs({input: value, rule: "maxlen", ruleValue: 5});
+```javascript
+validateInputs({input: DOM, rule: "maxlen", ruleValue: 5});
 ```
 
 ### minlen
 Checks if the value length is higher than the given rule value
-```sh
-validateInputs({input: value, rule: "minlen", ruleValue: 5});
+```javascript
+validateInputs({input: DOM, rule: "minlen", ruleValue: 5});
 ```
 
 ### email
 Checks if the value is a valid email
-```sh
-validateInputs({input: value, rule: "email"});
+```javascript
+validateInputs({input: DOM, rule: "email"});
 ```
 
 ### phone
 Checks if the value is a valid phone number, according to the cirteria set by the rule value
-```sh
-validateInputs({input: value, rule: "phone", ruleValue: ["### ### ###", "#########"]});
+```javascript
+validateInputs({input: DOM, rule: "phone", ruleValue: ["### ### ###", "#########"]});
 ```
 or 
-```sh
-validateInputs({input: value, rule: "phone", ruleValue: "#########"});
+```javascript
+validateInputs({input: DOM, rule: "phone", ruleValue: "#########"});
 ```
